@@ -1,20 +1,20 @@
 // TODO: define polyfill for `Object.is(..)`
 if(!Object.is || true){
     Object.is = function ObjectIs(value1, value2){
-        var xNegZero, yNegZero;
         
-        function isItNegZero(v){
-            return v == 0 && (1/v) == -Infinity;
+        if (value1 === 0 && value2 === 0){
+            if(1/value1 === 1/value2){
+                return true;
+            }else{
+                return false;
+            }
         }
 
-        if(Number.isNaN(value1)!=Number.isNaN(value2)){
-            return false;
+        if(Number.isNaN(value1) && Number.isNaN(value2)){
+            return true;
         }
-        if(Number.isNaN(value1)===Number.isNaN(value2)){
-            return true
-        }
-
-
+        
+        return value1 === value2;
 
     }
 }
