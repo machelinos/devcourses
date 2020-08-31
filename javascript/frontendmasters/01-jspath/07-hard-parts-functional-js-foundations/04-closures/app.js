@@ -283,16 +283,16 @@ You may assume that the given array is long enough to give a 'bust' before runni
 BONUS: Implement blackjack so the DEALER function can return more PLAYER functions that will each continue to take the next number in the array after the previous PLAYER function left off. You will just need to make sure the array has enough numbers for all the PLAYER functions.
  */
 const blackjack = (arr) => {
-    let playerCounter = 0;
-    let sum = 0;
-    let busted = false;
 
     const dealer = (num1, num2) => {
-
+        let playerCounter = 0;
+        let sum = 0;
+        let busted = false;
+    
         const player = () => {
 
-            if(playerCounter==0){
-                sum = sum + num1 + num2;
+            if(playerCounter===0){
+                sum = num1 + num2;
                 playerCounter++;
                 return sum;
             }else if(playerCounter===1){
@@ -332,10 +332,10 @@ const blackjack = (arr) => {
 }
 
 // /*** DEALER ***/
-// const deal = blackjack([2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11]);
+ const deal = blackjack([2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11]);
 
 // /*** PLAYER 1 ***/
-/*  const i_like_to_live_dangerously = deal(4, 5);
+ const i_like_to_live_dangerously = deal(4, 5);
  console.log(i_like_to_live_dangerously()); // should log: 9
  console.log(i_like_to_live_dangerously()); // should log: 11
  console.log(i_like_to_live_dangerously()); // should log: 17
@@ -343,5 +343,14 @@ const blackjack = (arr) => {
  console.log(i_like_to_live_dangerously()); // should log: 'bust'
  console.log(i_like_to_live_dangerously()); // should log: 'you are done!'
  console.log(i_like_to_live_dangerously()); // should log: 'you are done!'
- */
- 
+
+ /* TO DOOOO!!!!! not ready
+ const i_TOO_like_to_live_dangerously = deal(2, 2);
+ console.log(i_TOO_like_to_live_dangerously()); // should log: 4
+ console.log(i_TOO_like_to_live_dangerously()); // should log: 15
+ console.log(i_TOO_like_to_live_dangerously()); // should log: 19
+ console.log(i_TOO_like_to_live_dangerously()); // should log: 'bust'
+ console.log(i_TOO_like_to_live_dangerously()); // should log: 'you are done!
+ console.log(i_TOO_like_to_live_dangerously()); // should log: 'you are done!
+
+  */
