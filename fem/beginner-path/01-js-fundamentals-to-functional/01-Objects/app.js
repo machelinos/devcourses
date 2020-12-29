@@ -31,3 +31,17 @@ personBracket.name = "Mrs. White";
 personBracket[plea] = "I would never!";
 
 personBracket; // it would evaluate to an object with properties name (value "Mrs White") and wouldShe (value "I would never!")
+
+
+//Exercise - Create an object using bracket and dot notation that represents the characters an related daa you may find in a game of Clue
+// Characters, weapons and rooms
+//My solution
+
+var clueGame = {};
+
+clueGame.murderer = "??";
+clueGame.characters = ['Little Joy', 'Joyce', 'Marcel','Marcelle'];
+clueGame['weapons'] = ['Candle stick', 'Maze', 'Door knob', 'Umbrella'];
+clueGame.rooms = ['Library', 'Office', 'Observatory']; 
+
+//Exercise course solution
