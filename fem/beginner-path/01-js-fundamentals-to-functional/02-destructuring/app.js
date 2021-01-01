@@ -30,6 +30,5 @@ let firstValue = 1, secondValue =3;
 console.log(firstValue, secondValue); // => 3 1
 
 //Advance deep arrays
-
 var [c, [d, [e, f] ] ] = [1, [2, [[[3,4], 5], 6 ] ] ];
 console.log(c, d, e, f); // => 1 2 [[3,4], 5] 6
