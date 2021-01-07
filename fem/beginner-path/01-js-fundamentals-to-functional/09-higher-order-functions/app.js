@@ -96,10 +96,22 @@ const newDevelopment = [
         ]
     }
 ];
+let result = _.reduce(newDevelopment, function(memo, suspect, index, list){
+    for(let i=0; i<suspect.rooms.length; i++){
+        for(let key in suspect.rooms[i]){
+            if(suspect.rooms[i][key]){
+                memo.inRoom.push(key);
+                if(memo.notInRoom.indexOf(key)!=-1){
+                    memo.notInRoom.splice(memo.notInRoom.indexOf(key),1);
+                }
+            }else{
+                if(memo.notInRoom.indexOf(key)===-1&&memo.inRoom.indexOf(key)===-1){
+                    memo.notInRoom.push(key)
+                }
+            }
+        }
+    }
+    return memo;
 
-let notInRoom = function(suspect, memo){
-    _.reduce(suspect.rooms, function(room, memo, []))
-}
-
-_.reduce(newDevelopment, notInRoom);
+}, {inRoom: [], notInRoom: []});
 
