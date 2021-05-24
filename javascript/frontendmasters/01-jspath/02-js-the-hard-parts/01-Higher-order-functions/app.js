@@ -232,19 +232,19 @@ Challenge 13
 Create a function prioritize that accepts an array and a callback. The callback will return either true or false. prioritize will iterate through the array and perform the callback on each element, and return a new array, where all the elements that yielded a return value of true come first in the array, and the rest of the elements come second.
  */
 
-function prioritize(arr, cb){
-    let output = [];
-
-    forEach(arr, function(item){
-        if(cb(item)){
-            output.unshift(item);
-        }else{
-            output.push(item);
-        }
+function prioritize(array, callback) {
+    let trues = [], falses =[];
+    forEach(array, function(item){
+      if(callback(item)){
+        trues.push(item);
+      } else {
+        falses.push(item);
+      }
     });
-
-    return output;
-}
+    
+    return trues.concat(falses)
+    
+  }
 
 const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
 console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS));
@@ -253,30 +253,22 @@ console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'],
 /* Challenge 14
 Create a function countBy that accepts an array and a callback, and returns an object. countBy will iterate through the array and perform the callback on each element. Each return value from the callback will be saved as a key on the object. The value associated with each key will be the number of times that particular return value was returned.
  */
-function countBy(arr, cb){
+function countBy(array, callback) {
     let output = {};
-
-    //{odd: 2, even: 1}
-    forEach(arr, function(item){
-        let keyValue = cb(item); //even
-        if(Object.keys(output).length===0){
-            output[keyValue]=1;
-        }else{
-            for(key in output){
-                if(key===keyValue){
-                    output[keyValue]=output[keyValue]+1;
-                }else{
-                    if(output[keyValue]===undefined){
-                        output[keyValue]=1;
-                    }
-                }
-            }
-        }
-
+    
+    forEach(array, function(item){
+      let valueReturned = callback(item);
+      for(let key in output){
+        if(valueReturned === key){
+          output[valueReturned]++;
+          return;
+        } 
+      }
+      output[valueReturned]=1;
     });
-
+      
     return output;
-}
+  }
 
 console.log(countBy([1, 2, 3, 4, 5], function(num) {
 if (num % 2 === 0) return 'even';
