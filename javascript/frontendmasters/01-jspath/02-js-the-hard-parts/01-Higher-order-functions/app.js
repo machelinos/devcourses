@@ -279,30 +279,26 @@ else return 'odd';
 /* Challenge 15
 Create a function groupBy that accepts an array and a callback, and returns an object. groupBy will iterate through the array and perform the callback on each element. Each return value from the callback will be saved as a key on the object. The value associated with each key will be an array consisting of all the elements that resulted in that return value when passed into the callback.
  */
-function groupBy(arr, cb){
-    let output = {};
-
-    forEach(arr, function(item){
-        let keyOutput = cb(item);
-        
-        if(Object.keys(output).length===0){
-            output[keyOutput]=[item];
-        }else{
-            for(key in output){
-                //we use loose comparison for string key and number keyOutput
-                if(key==keyOutput){
-                    output[keyOutput].push(item);
-                }else{
-                    if(output[keyOutput]===undefined){
-                        output[keyOutput]=[item];
-                    }
-                }
-            }
+function groupBy(array, callback) {
+    let output={};
+    
+    forEach(array, function(item){
+      let result = callback(item);
+      
+      for(let key in output){
+        if(key==result){
+          output[key].push(item);
+          return;
         }
+      }
+      
+      output[result] = [item];
+      
     });
-
+    
     return output;
-}
+  
+  }
 const decimals = [1.3, 2.1, 2.4];
 const floored = function(num) { return Math.floor(num); };
 console.log(groupBy(decimals, floored));
@@ -330,11 +326,10 @@ console.log(goodKeys(sunny, startsWithBird));
 /* Challenge 17
 Create a function commutative that accepts two callbacks and a value. commutative will return a boolean indicating if the passing the value into the first function, and then passing the resulting output into the second function, yields the same output as the same operation with the order of the functions reversed (passing the value into the second function, and then passing the output into the first function).
  */
-function commutative(cb1, cb2, value){
-    let result1= cb2(cb1(value));
-    let result2= cb1(cb2(value));
-    return result1===result2 ? true : false;
-}
+function commutative(func1, func2, value) {
+    return func2(func1(value)) === func1(func2(value));
+  
+  }
 
 const multBy3 = n => n * 3;
 const divBy4 = n => n / 4;
