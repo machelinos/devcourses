@@ -184,7 +184,7 @@ Construct a function objectFilter that accepts an object as the first parameter 
 function objectFilter(obj, callback){
     let output = {};
 
-    for(key in obj){
+    for(let key in obj){
         let manipulatedKey = callback(key);
 
         if(manipulatedKey===obj[key]){
@@ -309,7 +309,7 @@ Create a function goodKeys that accepts an object and a callback. The callback w
  */
 function goodKeys(obj, cb){
     let output =[];
-    for(key in obj){
+    for(let key in obj){
         if(cb(obj[key])){
             output.push(key);
         }
@@ -344,7 +344,7 @@ Create a function objFilter that accepts an object and a callback. objFilter sho
 function objFilter(obj, cb){
     let output = {};
 
-    for(key in obj){
+    for(let key in obj){
         if(obj[key]===cb(key)){
             output[key] = obj[key];
         }
@@ -413,7 +413,7 @@ Create a function highestFunc that accepts an object (which will contain functio
 function highestFunc(obj, subject){
     let keyHighest=null;
 
-    for(key in obj){
+    for(let key in obj){
         if(keyHighest===null){
             keyHighest=key;
         }else{
