@@ -69,3 +69,22 @@ var firstObjDest, secondObjDest;
     a: firstObjDest,
     b: secondObjDest
 } = dataObj());
+
+// Nested object desctructuring pattern
+function nestedObj() {
+    return {
+        a: 1,
+        b: {
+            c: 3,
+            d: 4
+        }
+    }
+}
+
+var  {
+    a,
+    b: {
+        c,
+        d
+    } = {}
+} = nestedObj();
