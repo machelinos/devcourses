@@ -31,4 +31,4 @@ const App = () => {
   )
 }
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
