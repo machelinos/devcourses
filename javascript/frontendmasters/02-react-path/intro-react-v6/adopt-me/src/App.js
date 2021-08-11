@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import SearchParams from './SearchParams';
+import React from "react";
+import ReactDOM from "react-dom";
+import SearchParams from "./SearchParams";
 /* 
 const App = () => {
   return React.createElement("div", {}, [
@@ -24,9 +24,8 @@ const App = () => {
     <div>
       <h1>Adopt Me!</h1>
       <SearchParams></SearchParams>
-
     </div>
-  )
-}
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
