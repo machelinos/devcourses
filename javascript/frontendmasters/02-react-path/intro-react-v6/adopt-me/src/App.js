@@ -24,7 +24,6 @@ const App = () => {
 const App = () => {
   return (
     <div>
-
       <Router>
         <header>
           <Link to="/">
@@ -38,11 +37,15 @@ const App = () => {
           <Route path="/">
             <SearchParams></SearchParams>
           </Route>
-
         </Switch>
       </Router>
     </div>
   );
 };
 
-ReactDOM.render(<StrictMode><App /></StrictMode>, document.getElementById("root"));
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById("root")
+);
