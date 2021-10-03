@@ -26,12 +26,39 @@ a {
 }
 
 div img {
+	max-width: 375px;
 	width: 100%;
-	max-width: 225px; 
 }
 
 /* grid system -- mobile first! */
 
+.row::after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+[class*="col-"] {
+	margin: 0 1%;
+	position: relative;
+	width: 98%;
+}
+
+.col-3 {
+	background: lemonchiffon;
+}
+
+.col-6 {
+	background: mediumpurple;
+}
+
+.col-9 {
+	background: mediumturquoise;
+}
+
+.col-12 {
+	background:orchid;
+}
 
 /* Mobile Landscape Screen Sizes */
 @media only screen and (min-width: 480px)  {
@@ -39,5 +66,28 @@ div img {
 }
 /* Desktop screen Sizes */
 @media only screen and (min-width: 768px) {
+	[class*="col-"] {
+		float: left;
+	}
 
+	.col-3 {
+		width: 23%;
+	}
+
+	.col-6 {
+		width: 48%;
+	}
+
+	.col-9 {
+		width: 73%;
+	}
+
+	.col-push-9 {
+		left: 75%;
+	}
+
+	.col-pull-3 {
+		left: -25%;
+	}
+	
 }
