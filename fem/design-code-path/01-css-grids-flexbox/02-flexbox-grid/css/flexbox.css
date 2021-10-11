@@ -101,4 +101,13 @@ div img {
 		order: 0;
 	}
 
+	.reverse {
+		flex-flow: row-reverse wrap;
+	}
+
+	.reverse [class*="col-"] {
+		margin-left: 0;
+		margin-right: 4%;
+	}
+
 }
