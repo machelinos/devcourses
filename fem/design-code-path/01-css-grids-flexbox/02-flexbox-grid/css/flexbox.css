@@ -46,7 +46,8 @@ div img {
 	background: #ffc;
 }
 
-.col-2 {
+.col-2,
+.col-2-1 {
 	background: #ccf;
 }
 
@@ -70,6 +71,11 @@ div img {
 	.col-4 {
 		flex: 0 0 92%;
 	}
+
+	.order-0-2-1 {
+		order: 2;
+	}
+
 }
 /* Desktop screen Sizes */
 @media only screen and (min-width: 768px) {
@@ -78,7 +84,8 @@ div img {
 		flex: 0 0 20%;	
 	}
 
-	.col-2 {
+	.col-2,
+	.col-2-1 {
 		flex: 0 0 44%;
 	}
 
@@ -88,6 +95,10 @@ div img {
 
 	.col-4 {
 		flex: 0 0 92%;
+	}
+
+	.order-0-2-1 {
+		order: 0;
 	}
 
 }
