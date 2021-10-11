@@ -58,17 +58,12 @@ nav a:hover {
   color:#00c4c7;
 }
 
-
-.row:before, 
-.row:after {
-    content:"";
-    display: table;
-    clear:both;
-}
 div.row {
   background-color: #fff6e0;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  display: flex;
+  flex-flow: column wrap;
   padding: 1em;
 }
 .floatleft {
@@ -148,6 +143,12 @@ footer a {
   width: 96.66666%;
 }
 
+.col-1,
+.col-3 {
+  width: auto;
+  flex: 0 0 96.66666%;
+}
+
 
 
 /* Small devices (tablets, 768px and up) */
@@ -165,11 +166,23 @@ footer a {
 .col-1-4 {
   width: 96.66666%;
 }
+
+.col-1,
+.col-3 {
+  width: auto;
+  flex: 0 0 96.66666%;
+}
+
+.col-1 {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 div.row {
   padding: 0 2em;
 }
 aside[class*='sidebar'] {
-  float: left;
+  flex: 0 0 47%;
   width: 47%;
   margin-right: 3%;
 }
@@ -213,6 +226,22 @@ aside[class*='sidebar'] {
   .col-4 {
     width: 96.66666%;
   }
+
+  div.row {
+    flex-flow: row wrap;
+  }
+
+  .col-3 {
+    float: none;
+    width: auto;
+    flex: 0 0 69.166665%;
+  }
+
+  .col-1 {
+    width: auto;
+    flex: 0 0 20.83333%;
+  }
+
   h2 {
     font-size: 3em;
     border-bottom: 2px dotted #c80060;
