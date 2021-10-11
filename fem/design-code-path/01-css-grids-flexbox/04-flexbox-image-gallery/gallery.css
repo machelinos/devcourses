@@ -14,6 +14,20 @@ ul {
 	padding: 0;
 	list-style-type: none;
 }
+
+.row-gallery, .row-gallery--equal {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.row-gallery li {
+	flex: auto;
+}
+
+.row-gallery--equal li{
+	flex: 0 0 33%;
+}
+
 @media (min-width: 550px) {
 }
 @media (min-width: 850px) { 
