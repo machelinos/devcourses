@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
 class Details extends Component {
   state = { loading: true };
 
@@ -14,6 +15,9 @@ class Details extends Component {
 
   render() {
     console.log(this.state);
+
+    // uncomment this code to test error boundary screen
+    // throw new Error("whatever!");
 
     if (this.state.loading) {
       return <h2>loading...</h2>;
@@ -36,4 +40,12 @@ class Details extends Component {
   }
 }
 
-export default withRouter(Details);
+const DetailsWithRouter = withRouter(Details);
+
+export default function DetailsWithErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <DetailsWithRouter></DetailsWithRouter>
+    </ErrorBoundary>
+  );
+}
