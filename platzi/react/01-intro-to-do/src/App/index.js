@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { AppUI } from "./AppUI";
 
-const defaultTodos = [
+/* const defaultTodos = [
   { text: 'Cortar cebolla', completed: true },
   { text: 'Intro a react', completed: true },
   { text: 'Whatever', completed: false },
 ];
-
+ */
 function App() {
-  const [todos, setTodos] = useState(defaultTodos);
+  let localStorageTodos = localStorage.getItem('TODOS_V1');
+
+  if(!localStorageTodos) {
+    localStorage.setItem('TODOS_V1',JSON.stringify([]));
+  }
+
+  let parsedTodos = JSON.parse(localStorageTodos);
+
+  const [todos, setTodos] = useState(parsedTodos);
   const [searchValue, setSearchValue] = useState('');
 
   const completedTodos = todos.filter( todo=>!!todo.completed ).length;
@@ -22,18 +30,24 @@ function App() {
     searchedTodos = todos;
   }
 
+  const saveTodos = (todos) => {
+    const stringifiedTodos = JSON.stringify(todos);
+    localStorage.setItem('TODOS_V1', stringifiedTodos);
+    setTodos(todos);
+  }
+
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex( todo => todo.text === text );
     const todosCopy = [...todos];
     todosCopy[todoIndex].completed = true;
-    setTodos(todosCopy);
+    saveTodos(todosCopy);
   }
 
   const deleteTodo = (text) => {
     const todoIndex = todos.findIndex( todo=> todo.text === text);
     const todosCopy = [...todos];
     todosCopy.splice(todoIndex, 1);
-    setTodos(todosCopy);
+    saveTodos(todosCopy);
   }
 
 
