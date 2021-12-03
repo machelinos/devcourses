@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppUI } from "./AppUI";
 
 /* const defaultTodos = [
@@ -9,28 +9,50 @@ import { AppUI } from "./AppUI";
  */
 
 function useLocalStorage(item, initialValue) {
-  let localStorageItems = localStorage.getItem(item);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [items, setItems] = useState(initialValue);
 
-  if(!localStorageItems) {
-    localStorage.setItem(item,JSON.stringify(initialValue));
-  }
+  useEffect(()=>{
+    setTimeout(()=>{
+      try {
+        let localStorageItems = localStorage.getItem(item);
 
-  let parsedItems = JSON.parse(localStorageItems);
+        if(!localStorageItems) {
+          localStorage.setItem(item,JSON.stringify(initialValue));
+        }
+      
+        let parsedItems = JSON.parse(localStorageItems);
+  
+        setItems(parsedItems);
+        setLoading(false);
+  
+      } catch(error) {
+        setError(error);
+      }
+    
+    }, 2000)
+  }, []);
 
-  const [items, setItems] = useState(parsedItems);
+
 
   const saveItems = (items) => {
-    const stringifiedItems = JSON.stringify(items);
-    localStorage.setItem(item, stringifiedItems);
-    setItems(items);
+    try {
+      const stringifiedItems = JSON.stringify(items);
+      localStorage.setItem(item, stringifiedItems);
+      setItems(items);
+      setLoading(false);  
+    } catch(error) {
+      setError(error);
+    }
   }
 
-  return [items, saveItems];
+  return {items, saveItems, loading, error};
 
 }
 
 function App() {
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {items: todos, saveItems: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = useState('');
 
   const completedTodos = todos.filter( todo=>!!todo.completed ).length;
@@ -58,9 +80,10 @@ function App() {
     saveTodos(todosCopy);
   }
 
-
   return (
     <AppUI
+      loading = {loading}
+      error = {error}
       totalTodos = {totalTodos}
       completedTodos = {completedTodos}
       searchValue={searchValue}
