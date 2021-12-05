@@ -6,6 +6,7 @@ import { TodoItem } from "../Todoitem";
 import { CreateTodoButton } from "../CreateTodoButton";
 import { TodoContext } from "../TodoContext";
 import { Modal } from "../Modal";
+import { TodoForm } from "../TodoForm";
 
 
 const AppUI = () => {
@@ -36,7 +37,7 @@ const AppUI = () => {
       {
         !!modalOpen && (
           <Modal>
-            <p>Modal opened!</p>
+            <TodoForm />
           </Modal>
         )
       }
